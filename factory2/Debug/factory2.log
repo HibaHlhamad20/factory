@@ -1,0 +1,16 @@
+﻿  Camera.cpp
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(22,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(23,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(24,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(32,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(33,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(44,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(45,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Cylinder.cpp
+  Light.cpp
+  Model_3DS.cpp
+  Showroom.cpp
+  Texture.cpp
+  factory2.cpp
+  Generating Code...
+  factory2.vcxproj -> C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Debug\factory2.exe

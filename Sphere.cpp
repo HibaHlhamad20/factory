@@ -1,0 +1,22 @@
+#include "Sphere.h"
+
+Sphere::Sphere(Point c, float r) {
+    center = c;
+    radius = r;
+}
+
+void Sphere::draw() {
+    GLUquadric* quad = gluNewQuadric();
+
+    //  ›⁄Ì·  Ê·Ìœ ≈Õœ«ÀÌ«  «·≈ﬂ”«¡  ·ﬁ«∆Ì« ··ﬂ—…
+    gluQuadricTexture(quad, GL_TRUE);
+
+    glPushMatrix();
+    glTranslatef(center.x, center.y, center.z);
+
+    // —”„ «·ﬂ—… »«· ﬁ”Ì„«  «·„ÿ·Ê»…
+    gluSphere(quad, radius, 32, 32);
+
+    glPopMatrix();
+    gluDeleteQuadric(quad);
+}
