@@ -5,28 +5,97 @@
 #include "Dependencies/include/gl/glut.h"
 
 #include "Showroom.h"
-#include "Model_3DS.h"
 #include "Cuboid.h"
 #include "Point.h"
 #include <math.h>
+#include "texture.h"
+#include "SimpleStreet.h"
 
 
 Showroom::Showroom(float w, float h, float d) : width(w), height(h), depth(d) {
+    // 1. ﬁ«∆„… »√”„«¡ «·’Ê— «·„ «Õ… ⁄‰œﬂ ›Ì «·„Ã·œ
+    const char* buildingImages[] = {
+        "building.png",
+        "building2.png",
+        "building3.png"
+    };
 
-    HouseModel.Load((char*)"House.3ds");
+    float startZ = 2000.0f;  // ‰ﬁÿ… «·»œ«Ì… („‰ «·√„«„)
+    float spacing = 1200.0f;  // «·„”«›… »Ì‰ ﬂ· »‰«Ì… Ê»‰«Ì…
+    float xPos = -7000.0f;   // „Êﬁ⁄ «·’› ⁄·Ï «·Ì”«— (Œ«—Ã «·„⁄—÷)
+
+    for (int i = 0; i < 5; i++) {
+        // ‰Œ «— ’Ê—… „‰ «·ﬁ«∆„… »‘ﬂ· œÊ—Ì
+        const char* currentImg = buildingImages[i % 3];
+
+        // ‰Õ”» „Êﬁ⁄ Z ·ﬂ· »‰«Ì… · „ œ ⁄·Ï ÿÊ· «·‘«—⁄
+        float zPos = startZ - (i * spacing);
+
+        // ‰‰‘∆ «·»‰«Ì… Ê‰÷Ì›Â« ··„’›Ê›…
+        leftStreet.push_back(new Building(
+            Point(xPos, -2.0f, zPos),
+            700.0f,               // «·⁄—÷
+            2000.0f + (i * 100),  // «— ›«⁄«  „ ‰Ê⁄… ·ﬂ”— «·„··
+            700.0f,               // «·⁄„ﬁ
+            currentImg
+        ));
+    }
+
+  
+    
+    
+     sideRoad = new SimpleStreet(Point(-4500.0f, -1.9f, 0.0f), 2000.0f, 12000.0f, true);
 
     
-   /* HouseModel.pos = Point(0, 0, 0);*/
+   
+    frontRoad = new SimpleStreet(Point(2000.0f, -1.9f, 5000.0f), 2000.0f, 11000.0f, false);
+ 
 
-    HouseModel.pos.x = 0;
-    HouseModel.pos.y = 0;
-    HouseModel.pos.z = 0;
+
+    // œ«Œ· Showroom.cpp ›Ì «·‹ Constructor
+    float laneWidth = 800.0f;  // ⁄—÷ „”«— «·ﬂ—«Ã «·Ê«Õœ
+    float laneLength = 6500.0f; // ÿÊ· «·ﬂ—«Ã
+    float startX = 4000.0f;    // ‰ﬁÿ… »œ«Ì… «·ﬂ—«Ã ⁄·Ï Ì„Ì‰ «·„⁄—÷
+    float parkingZ = 1000.0f;   // „Êﬁ⁄ «·ﬂ—«Ã »«·‰”»… ·⁄„ﬁ «·„‘Âœ
+
+    for (int i = 0; i < 5; i++) {
+        // ≈“«Õ… ﬂ· „”«— ⁄‰ «·–Ì ﬁ»·Â »„ﬁœ«— laneWidth
+        parkingLanes[i] = new SimpleStreet(
+            Point(startX + (i * laneWidth), -1.9f, parkingZ),
+            laneWidth,
+            laneLength,
+            true, // true ·ÌﬂÊ‰ ÿÊ·Ì« „À· «·„Ê«ﬁ›
+            1.0f, 1.0f, 0.0f
+        );
+    }
+   //»‰«Ì«  Ã«‰»Ì… 
+    // 1. ﬁ«∆„… ’Ê— ÃœÌœ… ·ﬂ”— «· ﬂ—«—
+    const char* rightBuildingImages[] = {
+        "building3.png", //  √ﬂœÌ „‰ ÊÃÊœ Â–Â «·’Ê— ›Ì „Ã·œ «·„‘—Ê⁄
+        "building4.png",
+        "building5.png"
+    };
+
+    float startZ_Right = 2000.0f;
+    float spacing_Right = 1500.0f;
+    float xPos_Right = 9500.0f; // «·„Êﬁ⁄ ⁄·Ï «·Ì„Ì‰ (»⁄œ «·ﬂ—«Ã Ê«·Ãœ«—)
+
+    for (int i = 0; i < 4; i++) {
+        const char* currentImg = rightBuildingImages[i % 3];
+        float zPos = startZ_Right - (i * spacing_Right);
+
+        rightStreet.push_back(new Building(
+            Point(xPos_Right, -2.0f, zPos),
+            800.0f,               // «·⁄—÷
+            2200.0f + (i * 150),  // «— ›«⁄«  „Œ ·›…
+            800.0f,               // «·⁄„ﬁ
+            currentImg
+        ));
+    }
+    
   
-    HouseModel.scale = 0.5f;
-
-
-
 }
+
 
 void Showroom::drawNeonSign() {
     glDisable(GL_LIGHTING);
@@ -97,10 +166,46 @@ void Showroom::drawNeonSign() {
 }
 
 void Showroom::draw() {
-    // «·√—÷Ì… «·”Êœ«¡ («·√”›· )
-    glColor3f(0.1f, 0.1f, 0.12f);
-    Cuboid ground(Point(0, -2.0f, 0), 100000.0f, 4.0f, 100000.0f);
+    glEnable(GL_DEPTH_TEST); //  √ﬂœÌ „‰  ›⁄Ì· «Œ »«— «·⁄„ﬁ
+    glDepthFunc(GL_LEQUAL);  // Ì”„Õ »—”„ «·√”ÿÕ «·„ ﬁ«—»… Ãœ« œÊ‰ „‘«ﬂ·
+    // 1. «·√—÷Ì… «·√”«”Ì… (”Êœ«¡  „«„«)
+    glDisable(GL_LIGHTING);
+    glDisable(GL_TEXTURE_2D);
+    glColor3f(0.05f, 0.05f, 0.05f); // √”Êœ
+    Cuboid ground(Point(0, -2.5f, 0), 100000.0f, 0.1f, 100000.0f);
     ground.draw();
+
+
+    // 2. —”„ «·‘Ê«—⁄ «·ÃœÌœ… («· Ì  Õ ÊÌ ⁄·Ï ŒÿÊÿÂ« »œ«Œ·Â«)
+    if (sideRoad) sideRoad->draw();
+    if (frontRoad) frontRoad->draw();
+    //«·ﬂ—«Ã
+    for (int i = 0; i < 5; i++) {
+        if (parkingLanes[i]) parkingLanes[i]->draw();
+    }
+
+
+
+    glEnable(GL_TEXTURE_2D);
+    glColor3f(1.0f, 1.0f, 1.0f); // «· √ﬂÌœ ⁄·Ï «··Ê‰ «·√»Ì÷ ·ŸÂÊ— ’Ê—… «·Ãœ«— »Ê÷ÊÕ
+
+    // —”„ »«ﬁÌ «·»‰«Ì« 
+    for (auto b : leftStreet) { if (b) b->draw(); }
+
+    // 4. *** ≈⁄«œ…  ÂÌ∆… «·„⁄—÷ (Â«„ Ãœ«) ***
+    glEnable(GL_LIGHTING);    // ≈⁄«œ…  ›⁄Ì· «·≈÷«¡… ··„⁄—÷
+    glDisable(GL_TEXTURE_2D); //  ⁄ÿÌ· «· ﬂ ‘— ·ﬂÌ ·« Ì’»€ «·Ãœ—«‰
+    glColor3f(1.0f, 1.0f, 1.0f); // ≈⁄«œ… «··Ê‰ ··√»Ì÷ ·ﬂÌ  ⁄„· «·≈÷«¡… »‘ﬂ· ’ÕÌÕ
+
+    // —”„ ’› «·»‰«Ì«  «·Ì”«—Ì («·ﬁœÌ„)
+    glEnable(GL_TEXTURE_2D);
+    for (auto b : leftStreet) { if (b) b->draw(); }
+
+    // —”„ ’› «·»‰«Ì«  «·Ì„Ì‰Ì («·ÃœÌœ)
+    for (auto b : rightStreet) { if (b) b->draw(); }
+
+    glDisable(GL_TEXTURE_2D);
+    glColor3f(1.0f, 1.0f, 1.0f); // ≈⁄«œ… «··Ê‰ ··√»Ì÷ ·ﬂÌ  ⁄„· «·≈÷«¡… »‘ﬂ· ’ÕÌÕ
 
     float stepX = 400.0f;
     float stepZ = 400.0f;
@@ -144,20 +249,7 @@ void Showroom::draw() {
     glColor3f(0.05f, 0.05f, 0.05f);
     Cuboid roof(Point(0, height, 0), width + 100.0f, 40.0f, depth + 100.0f);
     roof.draw();
-    /// ﬂ‰  ⁄„ ÷Ì› „Êœ·
-
-    glEnable(GL_LIGHTING);
-
-   
-    glPushMatrix();
-   
-     glTranslatef(500.0f, 0.0f, -600.0f); 
-
-    HouseModel.Draw(); 
-    glPopMatrix();
-
-    glDisable(GL_LIGHTING);
-
-
     drawNeonSign();
 }
+
+  

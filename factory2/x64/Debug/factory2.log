@@ -1,21 +1,16 @@
-﻿  Texture.cpp
-  Camera.cpp
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(62,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(63,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(64,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(72,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(73,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(84,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(85,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Cuboid.cpp
+﻿  Camera.cpp
   Cylinder.cpp
-  Door.cpp
-C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Door.cpp(14,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(22,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(23,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(24,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(32,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(33,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(44,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HIBA ALHAMAD\Documents\‏‏factory2 - نسخة (2)\Camera.cpp(45,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   factory2.cpp
   Light.cpp
   Model_3DS.cpp
-  Point.cpp
   Showroom.cpp
-  Sphere.cpp
+  Texture.cpp
   Generating Code...
 LINK : fatal error LNK1104: cannot open file 'glut32.lib'
